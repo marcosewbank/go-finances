@@ -10,7 +10,9 @@ import {
 } from "@expo-google-fonts/poppins";
 
 import theme from "./src/global/styles/theme";
-import { Dashboard } from "./src/screens/Dashboard";
+
+import { NavigationContainer } from "@react-navigation/native";
+import { AppRoutes } from "./src/routes/app.routes";
 
 export default function App() {
   SplashScreen.preventAutoHideAsync();
@@ -29,7 +31,9 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Dashboard />
+      <NavigationContainer>
+        <AppRoutes />
+      </NavigationContainer>
     </ThemeProvider>
   );
 }
