@@ -64,12 +64,18 @@ export const Dashboard = () => {
     collection: DataListProps[],
     type: "positive" | "negative"
   ) => {
+    const collectionFiltered = collection.filter(
+      (transaction) => transaction.type === type
+    );
+
+    if (collectionFiltered.length === 0) return 0;
+
     const lastTransaction = new Date(
       Math.max.apply(
         Math,
-        collection
-          .filter((transaction) => transaction.type === type)
-          .map((transaction) => new Date(transaction.date).getTime())
+        collectionFiltered.map((transaction) =>
+          new Date(transaction.date).getTime()
+        )
       )
     );
 
@@ -139,14 +145,20 @@ export const Dashboard = () => {
           style: "currency",
           currency: "BRL",
         }),
-        lastTransaction: `Última entrada dia ${lastTransactionEntries}`,
+        lastTransaction:
+          lastTransactionEntries === 0
+            ? ""
+            : `Última entrada dia ${lastTransactionEntries}`,
       },
       expensive: {
         amount: expensiveTotal.toLocaleString("pt-BR", {
           style: "currency",
           currency: "BRL",
         }),
-        lastTransaction: `Última saida dia ${lastTransactionExpensives}`,
+        lastTransaction:
+          lastTransactionEntries === 0
+            ? ""
+            : `Última saida dia ${lastTransactionEntries}`,
       },
       total: {
         amount: total.toLocaleString("pt-BR", {
