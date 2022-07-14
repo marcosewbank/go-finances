@@ -20,6 +20,8 @@ import { AppRoutes } from "./src/routes/app.routes";
 
 import { SignIn } from "./src/screens/SignIn";
 
+import { AuthProvider, useAuth } from "./src/hooks/auth";
+
 export default function App() {
   SplashScreen.preventAutoHideAsync();
 
@@ -40,7 +42,9 @@ export default function App() {
       <NavigationContainer>
         <StatusBar barStyle="light-content" />
         {/* <AppRoutes /> */}
-        <SignIn />
+        <AuthProvider>
+          <SignIn />
+        </AuthProvider>
       </NavigationContainer>
     </ThemeProvider>
   );
