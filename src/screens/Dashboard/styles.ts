@@ -1,5 +1,5 @@
 import styled from "styled-components/native";
-import { FlatList, FlatListProps } from "react-native";
+import { FlatList, FlatListProps, TouchableOpacity } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import {
@@ -107,3 +107,5 @@ export const LoadContainer = styled.View`
   justify-content: center;
   align-items: center;
 `;
+
+export const LogoutButton = styled(TouchableOpacity)``;

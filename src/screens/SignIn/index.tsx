@@ -1,7 +1,8 @@
-import React from "react";
-import { Alert } from "react-native";
+import React, { useState } from "react";
+import { ActivityIndicator, Alert } from "react-native";
 
-import { Apple } from "../../assets/Apple";
+import { useTheme } from "styled-components";
+
 import { Google } from "../../assets/Google";
 import { Logo } from "../../assets/Logo";
 
@@ -20,14 +21,19 @@ import {
 } from "./styles";
 
 export const SignIn = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const { signInWithGoogle } = useAuth();
+
+  const theme = useTheme();
 
   const handleSignInWithGoogle = async () => {
     try {
-      await signInWithGoogle();
+      setIsLoading(true);
+      return await signInWithGoogle();
     } catch (error) {
       console.log("🚀 ~ error", error);
       Alert.alert("Não foi possível conectar a conta Google");
+      setIsLoading(false);
     }
   };
 
@@ -50,13 +56,21 @@ export const SignIn = () => {
 
       <Footer>
         <FooterWrapper>
-          <SignInSocialButton title="Entrar com Apple" svg={Apple} />
           <SignInSocialButton
             title="Entrar com o Google"
             svg={Google}
             onPress={() => handleSignInWithGoogle()}
           />
         </FooterWrapper>
+
+        {isLoading ? (
+          <ActivityIndicator
+            color={theme.colors.shape}
+            style={{ height: 50 }}
+          />
+        ) : (
+          <></>
+        )}
       </Footer>
     </Container>
   );
