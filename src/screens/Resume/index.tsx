@@ -23,6 +23,7 @@ import {
 import { HistoryCard } from "../../components/HistoryCard";
 import { categories } from "../../utils/categories";
 import { useIsFocused } from "@react-navigation/native";
+import { useAuth } from "../../hooks/auth";
 
 export interface TransactionData {
   type: "positive" | "negative";
@@ -44,7 +45,7 @@ interface CategoryData {
 
 export const Resume = () => {
   const isFocused = useIsFocused();
-
+  const { user } = useAuth();
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [isLoading, setIsLoading] = useState(true);
 
@@ -65,7 +66,8 @@ export const Resume = () => {
   const loadData = async () => {
     setIsLoading(true);
 
-    const dataKey = "@gofinance:transactions";
+    const dataKey = `@gofinance:transactions_user:${user.id}`;
+
     const response = await AsyncStorage.getItem(dataKey);
     const responseFormatted = response ? JSON.parse(response) : [];
 
