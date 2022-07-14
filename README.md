@@ -6,13 +6,6 @@
   Gerencie suas transações de maneira inteligente
 </h3>
 
-<h2>Preview do projeto 🚀</h2>
-
-<div align=center>
-  <img width="250" src=".github/gofinances.gif"/>
-</div>
-
-
 <h2>Sobre 🕵️</h2>
 
 <p>O gofinances é uma ótima alternativa para acompanhamento de transações financeiras. Ele fornece uma descrição dos registros criados e  um balanço dos valores, para você, de forma simples e elegante.<p>
